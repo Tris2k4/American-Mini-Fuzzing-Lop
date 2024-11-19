@@ -1,12 +1,15 @@
 Modified/Created Functions:
-1 - get_power_schedule in `schedule.py` - New function for calculating mutation counts
-2 - run_fuzzing in `main.py` - Modified to use power scheduling
-3 - Seed class in `seed.py` - Added performance metrics tracking
+
+1. get_power_schedule in `schedule.py` - New function for calculating mutation counts
+2. run_fuzzing in `main.py` - Modified to use power scheduling
+3. Seed class in `seed.py` - Added performance metrics tracking
+
 Implementation Explanation:
 The power scheduling implementation determines how many mutations to perform for each seed based on its performance characteristics. The core algorithm considers:
-1 - Execution speed - Seeds that run faster get more mutations
-2 - Coverage impact - Seeds covering more edges get higher priority
-3 - Performance bounds - Prevents extreme mutation counts
+
+1. Execution speed - Seeds that run faster get more mutations
+2. Coverage impact - Seeds covering more edges get higher priority
+3. Performance bounds - Prevents extreme mutation counts
 Key code references:
 
 ```python
@@ -41,9 +44,10 @@ def get_power_schedule(seed, avg_exec_time):
 ```
 
 The implementation uses:
-1 - Time factor: Compares seed's execution time against average
-2 - Coverage factor: Rewards seeds with more edge coverage
-3 - Scaling and bounds: Uses log scaling and caps to prevent extremes
+
+1. Time factor: Compares seed's execution time against average
+2. Coverage factor: Rewards seeds with more edge coverage
+3. Scaling and bounds: Uses log scaling and caps to prevent extremes
 The power schedule is integrated into the main fuzzing loop:
 
 ```python
@@ -56,8 +60,10 @@ The power schedule is integrated into the main fuzzing loop:
 ```
 
 The implementation balances exploration (trying various seeds) with exploitation (focusing on promising seeds) by:
-1 - Normalizing execution time relative to average
-2 - Using logarithmic scaling for coverage impact
-3 - Capping maximum mutations to prevent getting stuck
-4 - Ensuring minimum mutations for diversity
+
+1. Normalizing execution time relative to average
+2. Using logarithmic scaling for coverage impact
+3. Capping maximum mutations to prevent getting stuck
+4. Ensuring minimum mutations for diversity
+
 This approach ensures efficient resource allocation while maintaining fuzzing effectiveness.

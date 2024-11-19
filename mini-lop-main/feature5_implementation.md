@@ -1,9 +1,11 @@
 Modified/Created Functions:
-1 - HavocMutator class in `mutation.py` - Enhanced with new mutation strategies
-2 - Added predefined interesting values in `mutation.py`
+
+1. HavocMutator class in `mutation.py` - Enhanced with new mutation strategies
+2. Added predefined interesting values in `mutation.py`
 Implementation Explanation:
 The enhanced havoc mutator implements multiple mutation strategies with a focus on integer mutations and chunk operations. The implementation includes:
-1 - Predefined interesting values for different integer sizes (16/32/64 bits):
+
+- Predefined interesting values for different integer sizes (16/32/64 bits):
 
 ```python
 
@@ -27,7 +29,7 @@ INTERESTING_64 = [
 
 ```
 
-2 - Core HavocMutator class with new mutation methods:
+- Core HavocMutator class with new mutation methods:
 
 ```python
 class HavocMutator:
@@ -177,9 +179,11 @@ class HavocMutator:
 ```
 
 The implementation provides diverse mutation strategies by:
-1 - Supporting multiple integer sizes (16/32/64 bit)
-2 - Using predefined interesting values for edge cases
-3 - Implementing arithmetic operations with random deltas
-4 - Adding chunk replacement with variable sizes
-5 - Randomly selecting between strategies for each mutation
+
+- Supporting multiple integer sizes (16/32/64 bit)
+- Using predefined interesting values for edge cases
+- Implementing arithmetic operations with random deltas
+- Adding chunk replacement with variable sizes
+- Randomly selecting between strategies for each mutation
+
 This enhances test case generation by targeting both structured data (integers) and raw bytes, increasing the chance of finding interesting program behaviors.

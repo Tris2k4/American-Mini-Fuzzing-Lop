@@ -1,6 +1,7 @@
 Modified/Created Functions:
-1 - `SpliceMutator` class in `mutation.py` - New class implementing splice mutation
-2 - `MutationStrategy` class - Modified to include epsilon-greedy selection
+
+1. `SpliceMutator` class in `mutation.py` - New class implementing splice mutation
+2. `MutationStrategy` class - Modified to include epsilon-greedy selection
 
 Implementation Explanation:
 Added epsilon-greedy strategy for operator selection:
@@ -79,13 +80,17 @@ class MutationStrategy:
 ```
 
 The implementation uses:
-1 - Epsilon = 0.1 (10% exploration rate)
-2 - Exploration: Random operator selection
-3 - Exploitation: Select operator with highest average reward
-4 - Reward tracking for both coverage and crashes
+
+- Epsilon = 0.1 (10% exploration rate)
+- Exploration: Random operator selection
+- Exploitation: Select operator with highest average reward
+- Reward tracking for both coverage and crashes
+
 This epsilon-greedy approach:
-1 - Ensures exploration of both operators (10% random selection)
-2 - Favors the more successful operator (90% based on performance)
-3 - Adapts to changing effectiveness during fuzzing
-4 - Balances exploration and exploitation
+
+- Ensures exploration of both operators (10% random selection)
+- Favors the more successful operator (90% based on performance)
+- Adapts to changing effectiveness during fuzzing
+- Balances exploration and exploitation
+
 The strategy helps optimize the use of splice vs havoc mutations based on their success in finding new coverage and crashes.

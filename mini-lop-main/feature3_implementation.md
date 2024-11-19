@@ -1,11 +1,13 @@
 Modified/Created Functions:
-1 - `update_favored_seeds` in `main.py` - New function to mark favored seeds
-2 - `select_next_seed` in `schedule.py` - New function for seed selection with prioritization
-3 - `Seed` class in `seed.py` - Added favored status tracking
+
+1. `update_favored_seeds` in `main.py` - New function to mark favored seeds
+2. `select_next_seed` in `schedule.py` - New function for seed selection with prioritization
+3. `Seed` class in `seed.py` - Added favored status tracking
 
 Implementation Explanation:
 The implementation follows AFL's seed prioritization strategy with three key components:
-1 - Seed Status Tracking (`seed.py`):
+
+- Seed Status Tracking (`seed.py`):
 
 ```python
 class Seed:
@@ -29,7 +31,7 @@ class Seed:
         return self.exec_time * self.file_size
 ```
 
-2 - Seed Prioritization (`schedule.py`):
+- Seed Prioritization (`schedule.py`):
 
 ```python
 def select_next_seed(seed_queue, seeds_used_in_cycle, cycle_seed_count):

@@ -1,12 +1,13 @@
 Modified Functions:
-1 - `check_coverage` in `feedback.py` - Enhanced to track unique edges and compare with global coverage
-2 - `run_fuzzing` in `main.py` - Added seed queue management and edge-to-seeds mapping
+
+1. `check_coverage` in `feedback.py` - Enhanced to track unique edges and compare with global coverage
+2. `run_fuzzing` in `main.py` - Added seed queue management and edge-to-seeds mapping
 
 Implementation Explanation:
 
 The implementation focuses on two key components:
 
-1 - Coverage Tracking (`feedback.py`):
+- Coverage Tracking (`feedback.py`):
 
 ```python
 def check_coverage(trace_bits, global_coverage):
@@ -24,7 +25,7 @@ def check_coverage(trace_bits, global_coverage):
     return new_edge_covered, current_coverage
 ```
 
-2 - Seed Queue Management (`main.py`):
+- Seed Queue Management (`main.py`):
 
 ```python
     seed_queue = []
