@@ -1,11 +1,13 @@
 Modified Functions:
-1 - check_crash in feedback.py - Enhanced crash detection with signal classification
-2 - save_crash_input in main.py - New function to save crash-inducing inputs
-3 - run_fuzzing in main.py - Added crash verification and storage logic
+1 - `check_crash` in `feedback.py` - Enhanced crash detection with signal classification
+2 - `save_crash_input` in `main.py` - New function to save crash-inducing inputs
+3 - `run_fuzzing` in `main.py` - Added crash verification and storage logic
 
 Implementation Explanation:
+
 The implementation focuses on three key components:
-1 - Enhanced Crash Detection (feedback.py):
+
+1 - Enhanced Crash Detection (`feedback.py`):
 def check_crash(status_code):
     """
     Analyzes program exit status to detect and classify crashes.
@@ -60,7 +62,7 @@ def check_crash(status_code):
         return True
     return False
 
-2 - Save Crash-Inducing Inputs (main.py):
+2 - Save Crash-Inducing Inputs (`main.py`):
 def save_crash_input(conf, seed_path=None, status_code=None):
     """
     Save crash-triggering input to crashes folder.
@@ -81,7 +83,7 @@ def save_crash_input(conf, seed_path=None, status_code=None):
     shutil.copyfile(conf['current_input'], crash_path)
     return crash_path
 
-3 - Crash Storage (main.py):
+3 - Crash Storage (`main.py`):
             if check_crash(status_code):
                 crash_path = save_crash_input(conf, selected_seed.path, status_code)
                 print(f"Crash saved to {crash_path}")

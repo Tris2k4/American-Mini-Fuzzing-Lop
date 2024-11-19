@@ -1,8 +1,11 @@
 Modified/Created Functions:
-1 - HavocMutator class in mutation.py - Enhanced with new mutation strategies
-2 - Added predefined interesting values in mutation.py
+1 - `HavocMutator` class in `mutation.py` - Enhanced with new mutation strategies
+2 - Added predefined interesting values in `mutation.py`
+
 Implementation Explanation:
+
 The enhanced havoc mutator implements multiple mutation strategies with a focus on integer mutations and chunk operations. The implementation includes:
+
 1 - Predefined interesting values for different integer sizes (16/32/64 bits):
 INTERESTING_16 = [
     0, -32768, 32767, -1, 1,  # Min/max values for 16-bit integers

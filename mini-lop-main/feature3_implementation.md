@@ -1,11 +1,11 @@
 Modified/Created Functions:
-1 - update_favored_seeds in main.py - New function to mark favored seeds
-2 - select_next_seed in schedule.py - New function for seed selection with prioritization
-3 - Seed class in seed.py - Added favored status tracking
+1 - `update_favored_seeds` in `main.py` - New function to mark favored seeds
+2 - `select_next_seed` in `schedule.py` - New function for seed selection with prioritization
+3 - `Seed` class in `seed.py` - Added favored status tracking
 
 Implementation Explanation:
 The implementation follows AFL's seed prioritization strategy with three key components:
-1 - Seed Status Tracking (seed.py):
+1 - Seed Status Tracking (`seed.py`):
 class Seed:
     def __init__(self, path, seed_id, coverage, exec_time):
         self.favored = False  # Track favored status
@@ -15,7 +15,7 @@ class Seed:
         
     def unmark_favored(self):
         self.favored = False
-2 - Seed Prioritization (schedule.py):
+2 - Seed Prioritization (`schedule.py`):
 def select_next_seed(seed_queue, seeds_used_in_cycle, cycle_seed_count):
     # Find unused seeds in current cycle
     unused_seeds = [s for s in seed_queue if s.seed_id not in seeds_used_in_cycle]
@@ -30,7 +30,7 @@ def select_next_seed(seed_queue, seeds_used_in_cycle, cycle_seed_count):
         selected_seed = random.choice(unused_seeds)
     
     return selected_seed, seeds_used_in_cycle, cycle_seed_count, new_cycle
-3 - Favored Seed Management (main.py):
+3 - Favored Seed Management (`main.py`):
 def update_favored_seeds(seed_queue, edge_to_seeds):
     # Reset favored status
     for seed in seed_queue:

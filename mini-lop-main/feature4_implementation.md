@@ -1,12 +1,16 @@
 Modified/Created Functions:
-1 - get_power_schedule in schedule.py - New function for calculating mutation counts
-2 - run_fuzzing in main.py - Modified to use power scheduling
-3 - Seed class in seed.py - Added performance metrics tracking
+1 - `get_power_schedule` in `schedule.py` - New function for calculating mutation counts
+2 - `run_fuzzing` in `main.py` - Modified to use power scheduling
+3 - `Seed` class in `seed.py` - Added performance metrics tracking
+
 Implementation Explanation:
+
 The power scheduling implementation determines how many mutations to perform for each seed based on its performance characteristics. The core algorithm considers:
+
 1 - Execution speed - Seeds that run faster get more mutations
 2 - Coverage impact - Seeds covering more edges get higher priority
 3 - Performance bounds - Prevents extreme mutation counts
+
 Key code references:
 def get_power_schedule(seed, avg_exec_time):
     """

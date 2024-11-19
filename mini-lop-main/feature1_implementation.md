@@ -1,9 +1,12 @@
 Modified Functions:
-1 - check_coverage in feedback.py - Enhanced to track unique edges and compare with global coverage
-2 - run_fuzzing in main.py - Added seed queue management and edge-to-seeds mapping
+1 - `check_coverage` in `feedback.py` - Enhanced to track unique edges and compare with global coverage
+2 - `run_fuzzing` in `main.py` - Added seed queue management and edge-to-seeds mapping
+
 Implementation Explanation:
+
 The implementation focuses on two key components:
-1 - Coverage Tracking (feedback.py):
+
+1 - Coverage Tracking (`feedback.py`):
 def check_coverage(trace_bits, global_coverage):
     raw_bitmap = ctypes.string_at(trace_bits, MAP_SIZE)
     current_coverage = set()
@@ -18,7 +21,7 @@ def check_coverage(trace_bits, global_coverage):
         new_edge_covered = True
     return new_edge_covered, current_coverage
 
-2 - Seed Queue Management (main.py):
+2 - Seed Queue Management (`main.py`):
     seed_queue = []
     global_coverage = set()
     edge_to_seeds = {}  # Mapping from edge to list of seeds covering it

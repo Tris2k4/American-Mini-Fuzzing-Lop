@@ -1,6 +1,7 @@
 Modified/Created Functions:
-1 - SpliceMutator class in mutation.py - New class implementing splice mutation
-2 - MutationStrategy class - Modified to include epsilon-greedy selection
+1 - `SpliceMutator` class in `mutation.py` - New class implementing splice mutation
+2 - `MutationStrategy` class - Modified to include epsilon-greedy selection
+
 Implementation Explanation:
 Added epsilon-greedy strategy for operator selection:
 class MutationStrategy:
