@@ -4,6 +4,8 @@ Modified/Created Functions:
 
 Implementation Explanation:
 Added epsilon-greedy strategy for operator selection:
+
+```python
 class MutationStrategy:
     """
     Manages mutation operator selection using epsilon-greedy strategy.
@@ -74,6 +76,7 @@ class MutationStrategy:
             if crashed:
                 self.splice_crashes += 1
 
+```
 
 The implementation uses:
 1 - Epsilon = 0.1 (10% exploration rate)

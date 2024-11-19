@@ -8,6 +8,8 @@ Implementation Explanation:
 The implementation focuses on three key components:
 
 1 - Enhanced Crash Detection (`feedback.py`):
+
+```python
 def check_crash(status_code):
     """
     Analyzes program exit status to detect and classify crashes.
@@ -61,8 +63,11 @@ def check_crash(status_code):
             print("Core dump detected!")
         return True
     return False
+```
 
 2 - Save Crash-Inducing Inputs (`main.py`):
+
+```python
 def save_crash_input(conf, seed_path=None, status_code=None):
     """
     Save crash-triggering input to crashes folder.
@@ -90,8 +95,10 @@ def save_crash_input(conf, seed_path=None, status_code=None):
                 # Update mutation strategy with crash information
                 mutation_strategy.update_rewards(operator, 0, crashed=True)
                 continue
+```
 
 The implementation provides robust crash handling by:
+
 - Detecting crashes through signal analysis and core dump detection
 - Saving crash-inducing inputs with original seed information
 The crash detection system identifies various crash types (SIGSEGV, SIGABRT, etc.) and saves the inputs that triggered them, allowing for later reproduction and analysis.

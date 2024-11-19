@@ -6,16 +6,32 @@ Modified/Created Functions:
 Implementation Explanation:
 The implementation follows AFL's seed prioritization strategy with three key components:
 1 - Seed Status Tracking (`seed.py`):
+
+```python
 class Seed:
     def __init__(self, path, seed_id, coverage, exec_time):
-        self.favored = False  # Track favored status
-        
+        self.path = path
+        self.seed_id = seed_id
+        self.coverage = coverage  # Set of edges covered by this seed
+        self.exec_time = exec_time
+        self.file_size = os.path.getsize(path)
+        # By default, a seed is not marked as favored
+        self.favored = False
+
     def mark_favored(self):
         self.favored = True
-        
+
     def unmark_favored(self):
         self.favored = False
+
+    def get_valuation(self):
+        # Valuation used for sorting (execution time * file size)
+        return self.exec_time * self.file_size
+```
+
 2 - Seed Prioritization (`schedule.py`):
+
+```python
 def select_next_seed(seed_queue, seeds_used_in_cycle, cycle_seed_count):
     # Find unused seeds in current cycle
     unused_seeds = [s for s in seed_queue if s.seed_id not in seeds_used_in_cycle]
@@ -30,7 +46,11 @@ def select_next_seed(seed_queue, seeds_used_in_cycle, cycle_seed_count):
         selected_seed = random.choice(unused_seeds)
     
     return selected_seed, seeds_used_in_cycle, cycle_seed_count, new_cycle
+```
+
 3 - Favored Seed Management (`main.py`):
+
+```python
 def update_favored_seeds(seed_queue, edge_to_seeds):
     # Reset favored status
     for seed in seed_queue:
@@ -40,5 +60,6 @@ def update_favored_seeds(seed_queue, edge_to_seeds):
         seeds = [seed_queue[seed_id] for seed_id in seed_ids]
         seeds.sort(key=lambda s: s.get_valuation())
         seeds[0].mark_favored()
+```
 
 The implementation prioritizes seeds that provide unique coverage with good performance (small file size and fast execution). For each edge, we mark as "favored" the seed that covers it with the best performance score. During seed selection, we have a 90% chance of choosing from favored seeds when available, ensuring efficient exploration of the program's state space.

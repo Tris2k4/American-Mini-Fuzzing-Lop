@@ -1,17 +1,15 @@
 Modified/Created Functions:
-1 - `get_power_schedule` in `schedule.py` - New function for calculating mutation counts
-2 - `run_fuzzing` in `main.py` - Modified to use power scheduling
-3 - `Seed` class in `seed.py` - Added performance metrics tracking
-
+1 - get_power_schedule in `schedule.py` - New function for calculating mutation counts
+2 - run_fuzzing in `main.py` - Modified to use power scheduling
+3 - Seed class in `seed.py` - Added performance metrics tracking
 Implementation Explanation:
-
 The power scheduling implementation determines how many mutations to perform for each seed based on its performance characteristics. The core algorithm considers:
-
 1 - Execution speed - Seeds that run faster get more mutations
 2 - Coverage impact - Seeds covering more edges get higher priority
 3 - Performance bounds - Prevents extreme mutation counts
-
 Key code references:
+
+```python
 def get_power_schedule(seed, avg_exec_time):
     """
     Calculate the number of mutations based on the seed's performance score.
@@ -40,18 +38,22 @@ def get_power_schedule(seed, avg_exec_time):
     mutations = max(mutations, 1)  # Ensure at least 1 mutation
 
     return mutations
+```
 
 The implementation uses:
 1 - Time factor: Compares seed's execution time against average
 2 - Coverage factor: Rewards seeds with more edge coverage
 3 - Scaling and bounds: Uses log scaling and caps to prevent extremes
 The power schedule is integrated into the main fuzzing loop:
+
+```python
         # Get number of mutations to perform
         power_schedule = get_power_schedule(selected_seed, avg_exec_time)
                 seed_id = len(seed_queue)
         # Perform mutations and run target
-        for _ in range(power_schedule):
+        for _in range(power_schedule):
             operator = mutation_strategy.select_operator()
+```
 
 The implementation balances exploration (trying various seeds) with exploitation (focusing on promising seeds) by:
 1 - Normalizing execution time relative to average

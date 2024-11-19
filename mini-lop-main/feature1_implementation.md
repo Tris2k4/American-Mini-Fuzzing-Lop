@@ -7,6 +7,8 @@ Implementation Explanation:
 The implementation focuses on two key components:
 
 1 - Coverage Tracking (`feedback.py`):
+
+```python
 def check_coverage(trace_bits, global_coverage):
     raw_bitmap = ctypes.string_at(trace_bits, MAP_SIZE)
     current_coverage = set()
@@ -20,8 +22,11 @@ def check_coverage(trace_bits, global_coverage):
     if new_edges:
         new_edge_covered = True
     return new_edge_covered, current_coverage
+```
 
 2 - Seed Queue Management (`main.py`):
+
+```python
     seed_queue = []
     global_coverage = set()
     edge_to_seeds = {}  # Mapping from edge to list of seeds covering it
@@ -57,8 +62,11 @@ def check_coverage(trace_bits, global_coverage):
         seed_queue.append(new_seed)
         total_exec_time += exec_time
         exec_count += 1
+```
 
 and:
+
+```python
             new_edge_covered, seed_coverage = check_coverage(trace_bits, global_coverage)
             if new_edge_covered:
                 print(f"Found new coverage! Total coverage: {len(global_coverage)} edges.")
@@ -76,8 +84,10 @@ and:
                 seed_queue.append(new_seed)
                 seed_queue_length += 1
                 mutation_strategy.update_rewards(operator, len(seed_coverage - global_coverage))
+```
 
 The implementation maintains a global coverage set and saves inputs that discover new edges as seeds. When new coverage is found, the following occurs:
+
 - The input is saved to the queue folder
 - Edge-to-seeds mapping is updated
 - Global coverage is updated
