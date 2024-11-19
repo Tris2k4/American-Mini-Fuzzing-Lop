@@ -106,4 +106,3 @@ The implementation provides robust crash handling by:
 - Detecting crashes through signal analysis and core dump detection
 - Saving crash-inducing inputs with original seed information
 The crash detection system identifies various crash types (SIGSEGV, SIGABRT, etc.) and saves the inputs that triggered them, allowing for later reproduction and analysis.
-Test
